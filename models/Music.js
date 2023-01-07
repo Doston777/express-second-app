@@ -13,7 +13,12 @@ const MusicSchema = new Schema({
   },
   country: String,
   year: Number,
-  spotify_score: Number
+  spotify_score: Number,
+  createdAt: {
+    type: Date,
+    required: true,
+    default: Date.now()
+  }
 })
 
 module.exports = mongoose.model('music', MusicSchema)

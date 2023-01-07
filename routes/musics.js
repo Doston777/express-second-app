@@ -3,6 +3,22 @@ const router = express.Router()
 
 const Music = require("../models/Music")
 
+// Get musics between two years
+router.get("/between/:start_date/:end_date", (req, res) => {
+  const { start_date, end_date } = req.params
+  Music.find(
+    {
+      year: {
+        $gte: parseInt(start_date),
+        $lte: parseInt(end_date)
+      }
+    },
+    (err, music) => {
+      err ? res.json(err) : res.json(music)
+    }
+  )
+})
+
 // create new music
 router.post('/', (req, res) => {
   const music = new Music(req.body)
