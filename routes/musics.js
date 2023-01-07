@@ -55,7 +55,7 @@ router.put("/:id", (req, res) => {
       new: true
     },
     (err, music) => {
-      err ? res.json(err) : res.status(204).json(music)
+      err ? res.json(err) : res.json(music)
     }
   )
 })
