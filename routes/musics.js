@@ -10,8 +10,8 @@ router.get("/between/:start_date/:end_date", (req, res) => {
     {
       year: {
         $gte: parseInt(start_date),
-        $lte: parseInt(end_date)
-      }
+        $lte: parseInt(end_date),
+      },
     },
     (err, music) => {
       err ? res.json(err) : res.json(music)
@@ -21,21 +21,17 @@ router.get("/between/:start_date/:end_date", (req, res) => {
 
 // Get get top 3 musics by spotify_score
 router.get("/top3", (req, res) => {
-  const promise = Music.find({}).sort({spotify_score: -1}).limit(3)
-  promise.then(musics => res.json(musics))
-    .catch(err => res.json(err)) 
+  const promise = Music.find({}).sort({ spotify_score: -1 }).limit(3)
+  promise.then((musics) => res.json(musics)).catch((err) => res.json(err))
 })
 
-
-
 // create new music
-router.post('/', (req, res) => {
+router.post("/", (req, res) => {
   const music = new Music(req.body)
-  music.save((err,music) => {
-    err ?
-      res.status(
-        err.name === 'ValidationError' ? 403 : 500
-      ).json(err) : res.status(201).json(music) 
+  music.save((err, music) => {
+    err
+      ? res.status(err.name === "ValidationError" ? 403 : 500).json(err)
+      : res.status(201).json(music)
   })
 })
 
@@ -52,7 +48,7 @@ router.put("/:id", (req, res) => {
     req.params.id,
     req.body,
     {
-      new: true
+      new: true,
     },
     (err, music) => {
       err ? res.json(err) : res.json(music)
@@ -73,6 +69,5 @@ router.get("/", (req, res, next) => {
     err ? res.status(404) : res.status(200).json(music)
   })
 })
-
 
 module.exports = router

@@ -32,7 +32,6 @@ app.use("/users", usersRouter)
 app.use("/api/musics", musicsRouter)
 app.use("/api/authors", authorsRouter)
 
-
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404))

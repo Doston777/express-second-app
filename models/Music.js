@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose")
 
 const Schema = mongoose.Schema
 
@@ -6,10 +6,10 @@ const MusicSchema = new Schema({
   author_id: mongoose.Types.ObjectId,
   title: {
     type: String,
-    required: true
+    required: true,
   },
   category: {
-    type: String
+    type: String,
   },
   country: String,
   year: Number,
@@ -17,8 +17,8 @@ const MusicSchema = new Schema({
   createdAt: {
     type: Date,
     required: true,
-    default: Date.now()
-  }
+    default: Date.now(),
+  },
 })
 
-module.exports = mongoose.model('music', MusicSchema)
+module.exports = mongoose.model("music", MusicSchema)
