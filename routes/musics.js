@@ -19,6 +19,15 @@ router.get("/between/:start_date/:end_date", (req, res) => {
   )
 })
 
+// Get get top 3 musics by spotify_score
+router.get("/top3", (req, res) => {
+  const promise = Music.find({}).sort({spotify_score: -1}).limit(3)
+  promise.then(musics => res.json(musics))
+    .catch(err => res.json(err)) 
+})
+
+
+
 // create new music
 router.post('/', (req, res) => {
   const music = new Music(req.body)
