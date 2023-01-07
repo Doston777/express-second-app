@@ -35,6 +35,12 @@ router.put("/:id", (req, res) => {
   )
 })
 
+// Delete music by id
+router.delete("/:id", (req, res) => {
+  Music.findByIdAndDelete(req.params.id, (err, music) => {
+    err ? res.json(err) : res.json(music)
+  })
+})
 
 // Get all users
 router.get("/", (req, res, next) => {
